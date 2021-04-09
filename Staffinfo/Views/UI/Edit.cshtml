@@ -1,0 +1,20 @@
+﻿@model Staffinfo.Models.StaffViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Staffs</h1>
+<form asp-controller="UI" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="FullName"> Enter FullName</label>
+        <input type="text" asp-for="FullName" placeholder="Enter your Name here" /><br />
+        <label asp-for="Address"> Enter Address</label>
+        <input type="text" asp-for="Address" placeholder="Enter Address here:" /><br />
+        <label asp-for="Gender"> Enter Gender</label>
+        <input type="text" asp-for="Gender" placeholder="Enter Gender here:" /><br />
+        <img src="@Model.FilePath" height="100" width="100" />
+        <input type="file" asp-for="File" />
+        <button type="submit" class="btn btn-primary">Upload File</button><br />
+        <button type="submit" class="btn btn-primary">Update Staffs</button>
+    </div>
+</form>

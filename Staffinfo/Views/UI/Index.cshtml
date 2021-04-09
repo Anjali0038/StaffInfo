@@ -1,0 +1,77 @@
+﻿@model Staffinfo.Models.StaffViewModel
+@{
+    ViewData["Title"] = "List";
+}
+<h1> All staffs</h1>
+<div class="row col-sm-6">
+    <div class="col-sm-6 form-group">
+        <input id="txtVal" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+
+    </div>
+    <div class="col-sm-6 form-group">
+        <button class="btn btn-primary" id="btnSearch"> Search</button>
+
+    </div>
+</div>
+
+<div id="staffList"></div>
+<table class="table table-bordered table-responsive table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Action</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.StaffList)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FullName</td>
+                <td>@item.Address</td>
+                <td>@item.Gender</td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "UI", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Edit", "Edit", "UI", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                    @*<a class="btn btn-primary" asp-area="" asp-controller="UI" asp-action="Edit?id=@item.Id">Edit</a>
+                        <a class="btn btn-primary" asp-area="" asp-controller="UI" asp-action="Delete?=@item.Id">Delete</a>*@
+                </td>
+                <td>
+                    <img src="@item.FilePath" height="100" width="100" />
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div id="staffList"></div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSearch").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/UI/_PartialStaff",
+                type: 'GET',
+                data: {
+                    val: $('#txtVal').val(),
+
+                },
+                success: function (response) {
+                    $('#staffList').empty();
+                    $('#staffList').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</script>

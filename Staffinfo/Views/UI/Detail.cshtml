@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th scope="col">Id</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Address</th>
+            <th scope="col">Gender</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;}
+        @foreach (var staff in Model)
+        {
+            <tr scope="row">
+                <td>@(i++)</td>
+                <td>
+                    <a href="/staff/detail?id=@staff.Id">
+                        @staff.Id
+                    </a>
+                </td>
+                <td>@staff.FullName</td>
+                <td>@staff.Address</td>
+                <td>@staff.Gender</td>
+                <td><a class="btn btn-warning" href="/staff/Edit?id=@staff.Id">Edit</a></td>
+                <td><a class="btn btn-danger" href="/staff/Delete?id=@staff.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>  

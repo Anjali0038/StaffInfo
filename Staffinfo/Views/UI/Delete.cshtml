@@ -1,0 +1,11 @@
+﻿@model Staffinfo.Models.StaffViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Are you sure you want to Delete?</h1>
+<form asp-controller="UI" asp-action="Delete" method="POST">
+    <input type="hidden" asp-for="Id">
+    <button type="submit">Delete </button>
+</form>
+
